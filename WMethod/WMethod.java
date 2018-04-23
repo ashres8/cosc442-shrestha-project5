@@ -381,8 +381,20 @@ public class WMethod{
      Vector <String> tests=generateTests(transitionCover, w); // Generate tests.
      Utilities.printAllTestCases(tests); // Print tests.
 
+     int i = 0;
      for (String s : tests) {
-		Utilities.runFSM(FSM, 1, s.replace("", " ").trim(), " ");
+//		Utilities.runFSM(FSM, 1, s.replace("", " ").trim(), " ");
+ 		System.out.println("@Test");
+		System.out.println("public void testCase" + i + "(){");
+		if(Utilities.runFSM(FSM, 1, s.replace("", " ").trim(), " "))
+			System.out.println("	assertTrue(JamesBond.FindMatch(\"" + s +"\"));");
+		else
+			System.out.println("	assertFalse(JamesBond.FindMatch(\"" + s +"\"));");
+			
+		System.out.println("}");
+		
+		
+		i++;
 	 }
      
    }// End of main()
